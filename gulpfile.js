@@ -12,12 +12,15 @@ const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const beeper = require('beeper');
 const fs = require('fs');
+const sass = require('gulp-sass')(require('sass'));
+const rename = require('gulp-rename');
 
 // postcss plugins
 const autoprefixer = require('autoprefixer');
 const colorFunction = require('postcss-color-mod-function');
 const cssnano = require('cssnano');
 const easyimport = require('postcss-easy-import');
+const purgecss = require('@fullhuman/postcss-purgecss');
 
 const REPO = 'TryGhost/Casper';
 const REPO_READONLY = 'TryGhost/Casper';
@@ -45,14 +48,28 @@ function hbs(done) {
 }
 
 function css(done) {
+    const processors = [
+        easyimport,
+        colorFunction(),
+        autoprefixer(),
+        purgecss({
+            content: ['*.hbs', 'partials/**/*.hbs', 'assets/js/**/*.js'],
+            defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
+            safelist: [
+                /^kg-/, /^kg-bookmark-/, /^kg-gallery-/, /^kg-image/, /^kg-callout-/,
+                /^hljs/, /^table/, /^btn/, /^gh-/, 'no-image', 'dark-mode', 'auto-color',
+                'theme-farmstead', 'gh-head-open', 'is-active', 'nav-current', 'dark', 'light',
+                'message-success', 'message-error'
+            ]
+        }),
+        cssnano()
+    ];
+
     pump([
-        src('assets/css/*.css', {sourcemaps: true}),
-        postcss([
-            easyimport,
-            colorFunction(),
-            autoprefixer(),
-            cssnano()
-        ]),
+        src('assets/scss/theme.scss', {sourcemaps: true}),
+        sass().on('error', sass.logError),
+        postcss(processors),
+        rename('screen.css'),
         dest('assets/built/', {sourcemaps: '.'}),
         livereload()
     ], handleError(done));
@@ -89,7 +106,7 @@ function zipper(done) {
     ], handleError(done));
 }
 
-const cssWatcher = () => watch('assets/css/**', css);
+const cssWatcher = () => watch('assets/scss/**', css);
 const jsWatcher = () => watch('assets/js/**', js);
 const hbsWatcher = () => watch(['*.hbs', 'partials/**/*.hbs'], hbs);
 const watcher = parallel(cssWatcher, jsWatcher, hbsWatcher);
