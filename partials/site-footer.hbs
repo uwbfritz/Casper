@@ -1,0 +1,71 @@
+<footer class="site-footer" aria-labelledby="footer-heading">
+    <div class="outer">
+        <div class="inner">
+            <div class="footer-grid">
+                <div>
+                    <span class="footer-logo">{{@site.title}}</span>
+                    {{#if @site.description}}
+                        <p>{{@site.description}}</p>
+                    {{else}}
+                        <p>Stories, harvest notes, and happenings from our modern farmstead.</p>
+                    {{/if}}
+                    <div class="social-links">
+                        {{#if @site.facebook}}
+                            <a href="{{facebook_url}}" aria-label="Facebook">{{> "icons/facebook"}}</a>
+                        {{/if}}
+                        {{#if @site.twitter}}
+                            <a href="https://twitter.com/{{twitter}}" aria-label="Twitter">{{> "icons/twitter"}}</a>
+                        {{/if}}
+                        {{#if @site.instagram}}
+                            <a href="{{@site.instagram}}" aria-label="Instagram">{{> "icons/instagram"}}</a>
+                        {{/if}}
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Hours &amp; Location</h3>
+                    <div class="footer-nav">
+                        <span>Mon–Fri: 9am – 6pm</span>
+                        <span>Sat–Sun: 8am – 8pm</span>
+                        <a href="https://maps.google.com?q={{@site.title}}" target="_blank" rel="noopener">Get Directions</a>
+                        <a href="tel:+18005551234">+1 (800) 555-1234</a>
+                    </div>
+                </div>
+                <div class="newsletter" id="newsletter">
+                    <h3 class="footer-heading">Stay in the Loop</h3>
+                    <p>Seasonal event invites, harvest updates, and farm journal highlights.</p>
+                    {{#if @site.members_enabled}}
+                        <form data-members-form="subscribe">
+                            <input type="email" name="email" placeholder="Email address" required>
+                            <button class="btn btn-accent" type="submit">Subscribe</button>
+                        </form>
+                        <div class="message-success" data-members-success>Thanks for joining the farm!</div>
+                        <div class="message-error" data-members-error></div>
+                    {{else}}
+                        {{#if @site.email}}
+                            <a class="btn btn-primary" href="mailto:{{@site.email}}">Email Us</a>
+                        {{/if}}
+                    {{/if}}
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; {{date format="YYYY"}} {{@site.title}}. All rights reserved.</span>
+                <nav class="footer-nav" aria-label="Footer">
+                    {{navigation type="secondary"}}
+                </nav>
+                <a href="https://ghost.org" target="_blank" rel="noopener" class="footer-powered">Powered by Ghost</a>
+            </div>
+        </div>
+    </div>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "{{@site.title}}",
+            "url": "{{@site.url}}",
+            "logo": "{{@site.logo}}",
+            "sameAs": [
+                {{#if @site.facebook}}"{{facebook_url}}"{{/if}}{{#if @site.twitter}}{{#if @site.facebook}}, {{/if}}"https://twitter.com/{{twitter}}"{{/if}}
+            ]
+        }
+    </script>
+</footer>
