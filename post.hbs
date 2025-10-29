@@ -3,20 +3,17 @@
 {{#post}}
 <article class="post {{post_class}}">
     {{#if feature_image}}
-        {{#match @custom.post_image_style "Hidden"}}
-        {{else}}
-            <figure class="post-hero{{#match @custom.post_image_style "Full"}} post-hero--full{{/match}}{{#match @custom.post_image_style "Small"}} post-hero--small{{/match}}">
-                <img
-                    src="{{img_url feature_image size="l"}}"
-                    srcset="{{img_url feature_image size="m"}} 600w, {{img_url feature_image size="l"}} 1000w, {{img_url feature_image size="xl"}} 2000w"
-                    sizes="(min-width: 1024px) 960px, 100vw"
-                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-                >
-                {{#if feature_image_caption}}
-                    <figcaption>{{feature_image_caption}}</figcaption>
-                {{/if}}
-            </figure>
-        {{/match}}
+        <figure class="post-hero">
+            <img
+                src="{{img_url feature_image size="l"}}"
+                srcset="{{img_url feature_image size="m"}} 600w, {{img_url feature_image size="l"}} 1000w, {{img_url feature_image size="xl"}} 2000w"
+                sizes="(min-width: 1024px) 960px, 100vw"
+                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+            >
+            {{#if feature_image_caption}}
+                <figcaption>{{feature_image_caption}}</figcaption>
+            {{/if}}
+        </figure>
     {{/if}}
 
     <header class="post-header content-width">
@@ -53,7 +50,7 @@
             {{#unless @member}}
                 <div class="post-subscribe">
                     <h3>Gather Around Our Table</h3>
-                    <p>{{#if @custom.email_signup_text}}{{@custom.email_signup_text}}{{else}}Join our farm family for seasonal recipes, event invites, and journal highlights delivered weekly.{{/if}}</p>
+                    <p>Join our farm family for seasonal recipes, event invites, and journal highlights delivered weekly.</p>
                     <form data-members-form="subscribe">
                         <input type="email" name="email" placeholder="Email address" required>
                         <button class="btn btn-primary" type="submit">Subscribe</button>
@@ -64,21 +61,19 @@
             {{/unless}}
         {{/if}}
 
-        {{#if @custom.show_recent_posts_footer}}
-            {{#if primary_tag}}
-                {{#get "posts" filter="id:-{{id}}+tag:{{primary_tag.slug}}" limit="3" include="tags,authors" as |related|}}
-                    {{#if related}}
-                        <aside class="related-posts">
-                            <h2 class="section-heading__title">More in {{primary_tag.name}}</h2>
-                            <div class="post-feed related-posts__grid">
-                                {{#foreach related}}
-                                    {{> "card-post"}}
-                                {{/foreach}}
-                            </div>
-                        </aside>
-                    {{/if}}
-                {{/get}}
-            {{/if}}
+        {{#if primary_tag}}
+            {{#get "posts" filter="id:-{{id}}+tag:{{primary_tag.slug}}" limit="3" include="tags,authors" as |related|}}
+                {{#if related}}
+                    <aside class="related-posts">
+                        <h2 class="section-heading__title">More in {{primary_tag.name}}</h2>
+                        <div class="post-feed related-posts__grid">
+                            {{#foreach related}}
+                                {{> "card-post"}}
+                            {{/foreach}}
+                        </div>
+                    </aside>
+                {{/if}}
+            {{/get}}
         {{/if}}
     </footer>
 </article>

@@ -3,16 +3,13 @@
 {{> "hero"
     background_image=@site.cover_image
     background_alt=@site.title
-    use_cover=@custom.show_publication_cover
     eyebrow="Welcome to the Farm"
-    title=@site.title
-    fallback_title="Farmstead Retreat"
-    description=@site.description
-    fallback_description="Gather with us for seasonal harvests, farm suppers, and stories from the fields."
+    title=(or @site.title "Farmstead Retreat")
+    description=(or @site.description "Gather with us for seasonal harvests, farm suppers, and stories from the fields.")
     primary_cta="Plan Your Visit"
-    primary_cta_url="/plan-your-visit/"
+    primary_cta_url=(concat @site.url "/plan-your-visit/")
     secondary_cta="Fall Events"
-    secondary_cta_url="/events/"
+    secondary_cta_url=(concat @site.url "/events/")
 }}
 
 <section class="outer">
@@ -58,7 +55,7 @@
 <section class="outer">
     <div class="inner">
         {{> "section-heading" eyebrow="Farm Journal" title="Latest from the Fields" description="Fresh recipes, soil notes, and behind-the-scenes glimpses from our team."}}
-        <div class="post-feed{{#match @custom.feed_layout "Grid"}} post-feed--grid{{/match}}{{#match @custom.feed_layout "List"}} post-feed--list{{/match}}">
+        <div class="post-feed">
             {{#foreach posts limit="6"}}
                 {{> "card-post"}}
             {{/foreach}}
