@@ -1,54 +1,113 @@
 {{!< default}}
-{{!-- The tag above means: insert everything in this file
-into the {body} of the default.hbs template --}}
 
-<div class="site-header-content outer{{#match @custom.header_style "Left aligned"}} left-aligned{{/match}}{{#unless @custom.show_publication_cover}}{{#match @custom.header_style "Hidden"}} no-content{{/match}}{{/unless}}">
+{{> "hero"
+    background_image=@site.cover_image
+    background_alt=@site.title
+    use_cover=@custom.show_publication_cover
+    eyebrow="Welcome to the Farm"
+    title=@site.title
+    default_title="Farmstead Retreat"
+    description=@site.description
+    default_description="Gather with us for seasonal harvests, farm suppers, and stories from the fields."
+    primary_cta="Plan Your Visit"
+    primary_cta_url=(concat @site.url "/plan-your-visit/")
+    secondary_cta="Fall Events"
+    secondary_cta_url=(concat @site.url "/events/")
+}}
 
-    {{#if @custom.show_publication_cover}}
-        {{#if @site.cover_image}}
-            {{!-- This is a responsive image, it loads different sizes depending on device
-            https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
-            <img class="site-header-cover"
-                srcset="{{img_url @site.cover_image size="s"}} 300w,
-                        {{img_url @site.cover_image size="m"}} 600w,
-                        {{img_url @site.cover_image size="l"}} 1000w,
-                        {{img_url @site.cover_image size="xl"}} 2000w"
-                sizes="100vw"
-                src="{{img_url @site.cover_image size="xl"}}"
-                alt="{{@site.title}}"
-            />
-        {{/if}}
-    {{/if}}
-
-    {{#match @custom.header_style "!=" "Hidden"}}
-        <div class="site-header-inner inner">
-            {{#match @custom.navigation_layout "Logo on cover"}}
-                {{#if @site.logo}}
-                    <img class="site-logo" src="{{@site.logo}}" alt="{{@site.title}}">
-                {{else}}
-                    <h1 class="site-title">{{@site.title}}</h1>
-                {{/if}}
-            {{/match}}
-            {{#if @site.description}}
-                <p class="site-description">{{@site.description}}</p>
-            {{/if}}
+<section class="outer">
+    <div class="inner">
+        {{> "section-heading" eyebrow="Seasonal" title="Attractions Worth the Drive" description="Experience the rhythm of farm life with hands-on adventures for guests of every age."}}
+        <div class="grid" data-columns="4">
+            <article class="card">
+                <div class="card__body">
+                    <span class="badge">Pumpkin Patch</span>
+                    <h3 class="card__title">Handpick the Season</h3>
+                    <p class="card__excerpt">Wander winding rows of heirloom pumpkins, gourds, and squash ready for your porch or pie.</p>
+                    <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><path fill="#2E5E4E" d="M32 6c-3 0-5 2-5 5v5h10v-5c0-3-2-5-5-5zm0 12c-12 0-22 10-22 22s10 18 22 18 22-6 22-18S44 18 32 18zm0 6c8 0 15 7 15 16s-7 12-15 12-15-3-15-12 7-16 15-16z" opacity=".85"/></svg>
+                </div>
+            </article>
+            <article class="card">
+                <div class="card__body">
+                    <span class="badge">Corn Maze</span>
+                    <h3 class="card__title">Get Lost, Laugh Loud</h3>
+                    <p class="card__excerpt">Twist through towering stalks with hidden clues, twilight lantern walks, and bonfires.</p>
+                    <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><path fill="#6B4E3D" d="M20 54h8V10l-8 6v38zm16 0h8V14l-8-4v44zm12 4H16a4 4 0 0 1-4-4V22l20-15 20 15v32a4 4 0 0 1-4 4z" opacity=".75"/></svg>
+                </div>
+            </article>
+            <article class="card">
+                <div class="card__body">
+                    <span class="badge">U-Pick</span>
+                    <h3 class="card__title">Harvest Your Favorites</h3>
+                    <p class="card__excerpt">Fill a basket with berries, flowers, or tree-ripened fruit while learning from our growers.</p>
+                    <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><path fill="#6CA6C1" d="M32 8C20 8 10 18 10 30s10 22 22 22 22-10 22-22S44 8 32 8zm0 10a8 8 0 0 1 8 8h-8V18zm-4 8V14.3A16 16 0 0 0 16 30c0 8.8 7.2 16 16 16 5.5 0 10.4-2.8 13.3-7.1A12 12 0 0 1 28 26z" opacity=".85"/></svg>
+                </div>
+            </article>
+            <article class="card">
+                <div class="card__body">
+                    <span class="badge">Hayrides</span>
+                    <h3 class="card__title">Sunset Field Tours</h3>
+                    <p class="card__excerpt">Climb aboard for scenic rides, story time, and stargazing over rolling pasture hills.</p>
+                    <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><path fill="#8E2C2C" d="M14 38h4v-6h28v6h4a6 6 0 0 1 6 6v8h-6a8 8 0 1 1-16 0H30a8 8 0 1 1-16 0H8v-8a6 6 0 0 1 6-6zm34 18a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 56a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm30-24H12v-6h40v6z" opacity=".85"/></svg>
+                </div>
+            </article>
         </div>
-    {{/match}}
-
-</div>
-
-{{!-- The main content area --}}
-<main id="site-main" class="site-main outer">
-<div class="inner posts">
-
-    <div class="post-feed">
-        {{#foreach posts}}
-            {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
-            {{> "post-card"}}
-        {{/foreach}}
     </div>
+</section>
 
-    {{pagination}}
+<section class="outer">
+    <div class="inner">
+        {{> "section-heading" eyebrow="Farm Journal" title="Latest from the Fields" description="Fresh recipes, soil notes, and behind-the-scenes glimpses from our team."}}
+        <div class="post-feed{{#match @custom.feed_layout "Grid"}} post-feed--grid{{/match}}{{#match @custom.feed_layout "List"}} post-feed--list{{/match}}">
+            {{#foreach posts limit="6"}}
+                {{> "card-post"}}
+            {{/foreach}}
+        </div>
+        {{pagination}}
+    </div>
+</section>
 
-</div>
-</main>
+<section class="outer">
+    <div class="inner">
+        <div class="info-panel">
+            <div>
+                <h3>Plan Your Visit</h3>
+                <p>Open-air markets, weekend workshops, and campfire suppers return this season. Reserve your spot early.</p>
+            </div>
+            <div class="info-panel__items">
+                <div class="info-item">
+                    <strong>Farm Stand Hours</strong>
+                    <span>Wednesday – Friday: 10am – 6pm</span>
+                    <span>Saturday – Sunday: 8am – 8pm</span>
+                </div>
+                <div class="info-item">
+                    <strong>Location</strong>
+                    <a href="https://maps.google.com?q={{@site.title}}" target="_blank" rel="noopener">Find us on Google Maps</a>
+                </div>
+                <div class="info-item">
+                    <strong>Admission</strong>
+                    <span>General $8 • Kids under 5 free</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="outer">
+    <div class="inner">
+        {{> "section-heading" eyebrow="From the Stand" title="Seasonal Goods &amp; Provisions" description="Small-batch goods harvested and crafted on-site. Available while supplies last."}}
+        {{#get "posts" limit="3" filter="tags:[produce,honey,flowers]" include="tags,authors"}}
+            <div class="post-feed">
+                {{#if posts}}
+                    {{#foreach posts}}
+                        {{> "card-post"}}
+                    {{/foreach}}
+                {{else}}
+                    <div class="muted-background">
+                        <p>Check back soon for fresh updates from the farm stand.</p>
+                    </div>
+                {{/if}}
+            </div>
+        {{/get}}
+    </div>
+</section>

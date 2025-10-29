@@ -42,7 +42,7 @@ yarn install
 yarn dev
 ```
 
-Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
+Now you can edit `/assets/scss/` files, which will be compiled to `/assets/built/` automatically.
 
 The `zip` Gulp task packages the theme files into `dist/<theme-name>.zip`, which you can then upload to your site.
 
@@ -50,6 +50,16 @@ The `zip` Gulp task packages the theme files into `dist/<theme-name>.zip`, which
 # create .zip file
 yarn zip
 ```
+
+# Farmstead Premium Variant
+
+This fork introduces the Farmstead premium redesign with modular SCSS and refreshed templates. Key directories:
+
+- `assets/scss/` – Design tokens, base styles, layouts, components, and post typography.
+- `partials/hero.hbs`, `partials/card-post.hbs`, `partials/header.hbs`, `partials/site-footer.hbs` – Reusable layout building blocks.
+- `assets/js/header.js` – Sticky header behavior for the transparent-to-solid transition.
+
+Build scripts compile SCSS and bundle JavaScript into `assets/built/`.
 
 # PostCSS Features Used
 

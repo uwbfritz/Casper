@@ -1,0 +1,31 @@
+<article class="card post-card {{post_class}}">
+    {{#if feature_image}}
+        <div class="card__media">
+            <img
+                src="{{img_url feature_image size="m"}}"
+                srcset="{{img_url feature_image size="s"}} 300w, {{img_url feature_image size="m"}} 600w, {{img_url feature_image size="l"}} 1000w"
+                sizes="(min-width: 900px) 320px, 100vw"
+                alt="{{title}}"
+                loading="lazy"
+                decoding="async"
+            >
+        </div>
+    {{/if}}
+    <div class="card__body">
+        {{#if primary_tag}}
+            <span class="tag-pill">{{primary_tag.name}}</span>
+        {{/if}}
+        <h3 class="card__title"><a href="{{url}}">{{title}}</a></h3>
+        {{#if excerpt}}
+            <p class="card__excerpt">{{excerpt words="26"}}</p>
+        {{/if}}
+        <div class="card__meta">
+            <span>{{reading_time}}</span>
+            <span>{{date format="MMMM D, YYYY"}}</span>
+            {{#if primary_author}}
+                <span>By {{primary_author.name}}</span>
+            {{/if}}
+        </div>
+    </div>
+    <a class="card__link" href="{{url}}"><span class="sr-only">{{title}}</span></a>
+</article>
