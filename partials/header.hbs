@@ -1,5 +1,5 @@
-<header id="gh-head" class="site-header gh-head{{#match @custom.navigation_layout "Logo on cover"}} nav-cover{{/match}}{{#match @custom.navigation_layout "Logo in the middle"}} nav-center{{/match}}{{#match @custom.navigation_layout "Stacked"}} nav-stacked{{/match}}{{#match @custom.header_style "Left aligned"}} header-left{{/match}}{{#match @custom.header_style "Hidden"}} header-hidden{{/match}}" data-theme="{{#is "home"}}transparent{{else}}solid{{/is}}" data-theme-state="{{#is "home"}}transparent{{else}}solid{{/is}}">
-    <div class="site-header__inner gh-head-inner{{#match @custom.navigation_layout "Logo in the middle"}} is-center{{/match}}{{#match @custom.navigation_layout "Stacked"}} is-stacked{{/match}}">
+<header id="gh-head" class="site-header gh-head" data-theme="{{#is "home"}}transparent{{else}}solid{{/is}}" data-theme-state="{{#is "home"}}transparent{{else}}solid{{/is}}">
+    <div class="site-header__inner gh-head-inner">
         <div class="site-brand gh-head-brand">
             <a class="site-logo gh-head-logo{{#unless @site.logo}} no-image{{/unless}}" href="{{@site.url}}">
                 {{#if @site.logo}}
@@ -14,7 +14,7 @@
             </button>
         </div>
 
-        <nav id="site-navigation" class="site-nav gh-head-menu{{#match @custom.header_style "Left aligned"}} is-left{{/match}}{{#match @custom.header_style "Hidden"}} is-hidden{{/match}}" aria-label="Primary"{{#match @custom.header_style "Hidden"}} aria-hidden="true"{{/match}}>
+        <nav id="site-navigation" class="site-nav gh-head-menu" aria-label="Primary">
             {{navigation}}
         </nav>
 

@@ -1,10 +1,8 @@
 <section class="hero {{#if class}}hero--{{class}}{{/if}}" {{#if id}}id="{{id}}"{{/if}}>
     {{#if background_image}}
-        {{#if use_cover}}
-            <div class="hero__media">
-                <img src="{{img_url background_image size="xl"}}" srcset="{{img_url background_image size="m"}} 600w, {{img_url background_image size="l"}} 1000w, {{img_url background_image size="xl"}} 2000w" sizes="100vw" alt="{{background_alt}}" loading="lazy" decoding="async">
-            </div>
-        {{/if}}
+        <div class="hero__media">
+            <img src="{{img_url background_image size="xl"}}" srcset="{{img_url background_image size="m"}} 600w, {{img_url background_image size="l"}} 1000w, {{img_url background_image size="xl"}} 2000w" sizes="100vw" alt="{{background_alt}}" loading="lazy" decoding="async">
+        </div>
     {{else}}
         {{#if background_video}}
             <div class="hero__media">
@@ -21,31 +19,19 @@
         {{/if}}
         {{#if title}}
             <h1 class="hero__title">{{title}}</h1>
-        {{else}}
-            {{#if default_title}}
-                <h1 class="hero__title">{{default_title}}</h1>
-            {{/if}}
         {{/if}}
         {{#if description}}
             <p class="hero__description">{{description}}</p>
-        {{else}}
-            {{#if default_description}}
-                <p class="hero__description">{{default_description}}</p>
-            {{/if}}
         {{/if}}
-        {{#if primary_cta}}
+        {{#if (or primary_cta secondary_cta)}}
             <div class="hero__actions">
-                <a class="btn btn-primary" href="{{primary_cta_url}}">{{primary_cta}}</a>
+                {{#if primary_cta}}
+                    <a class="btn btn-primary" href="{{primary_cta_url}}">{{primary_cta}}</a>
+                {{/if}}
                 {{#if secondary_cta}}
                     <a class="btn btn-secondary" href="{{secondary_cta_url}}">{{secondary_cta}}</a>
                 {{/if}}
             </div>
-        {{else}}
-            {{#if secondary_cta}}
-                <div class="hero__actions">
-                    <a class="btn btn-secondary" href="{{secondary_cta_url}}">{{secondary_cta}}</a>
-                </div>
-            {{/if}}
         {{/if}}
     </div>
 </section>

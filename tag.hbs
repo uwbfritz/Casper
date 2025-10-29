@@ -5,12 +5,9 @@
         class="compact"
         background_image=feature_image
         background_alt=name
-        use_cover=true
         eyebrow="In the Journal"
         title=name
-        default_title="In the Journal"
-        description=description
-        default_description=(concat "Stories and updates filed under " name ".")
+        description=(or description (concat "Stories and updates filed under " name "."))
         primary_cta="Subscribe"
         primary_cta_url="#newsletter"
     }}

@@ -7,19 +7,6 @@
   box-shadow: var(--shadow-md);
 }
 
-.post-hero--full {
-  max-width: none;
-  border-radius: 0;
-}
-
-.post-hero--full img {
-  border-radius: 0;
-}
-
-.post-hero--small {
-  max-width: min(640px, 92vw);
-}
-
 .post-hero img {
   width: 100%;
   height: auto;
