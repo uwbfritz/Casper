@@ -1,0 +1,73 @@
+/*
+ Design tokens for the Farmstead premium theme.
+ Adjust these values to update the brand system globally.
+*/
+:root {
+  --color-bg: #FAF7F2;
+  --color-bg-elevated: #fffaf0;
+  --color-surface: rgba(255, 255, 255, 0.82);
+  --color-text: #2B2B2B;
+  --color-text-muted: rgba(43, 43, 43, 0.72);
+  --color-primary: #2E5E4E; /* Forest Green */
+  --color-primary-contrast: #F5F8F4;
+  --color-accent: #8E2C2C; /* Barn Red */
+  --color-wheat: #D7C8A1;
+  --color-sky: #6CA6C1;
+  --color-soil: #6B4E3D;
+  --color-border: rgba(43, 43, 43, 0.12);
+  --color-border-strong: rgba(43, 43, 43, 0.24);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 3px rgba(19, 32, 24, 0.15);
+  --shadow-md: 0 12px 24px rgba(27, 45, 36, 0.12);
+  --shadow-lg: 0 30px 45px rgba(15, 23, 17, 0.18);
+  --shadow-focus: 0 0 0 3px rgba(110, 166, 146, 0.35);
+  --container-max: min(1120px, 92vw);
+  --content-max: min(820px, 88vw);
+  --gutter: clamp(1rem, 3vw, 2.5rem);
+  --font-serif: "Roboto Slab", "Zilla Slab", "Arvo", serif;
+  --font-sans: "Source Sans 3", "Inter", "Nunito", system-ui, -apple-system, Segoe UI, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 600;
+  --font-weight-bold: 700;
+  --line-height-base: 1.6;
+  --transition-base: 220ms ease;
+  --grain-overlay: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #161412;
+    --color-bg-elevated: #1E1B18;
+    --color-surface: rgba(36, 32, 28, 0.95);
+    --color-text: #F4F1EC;
+    --color-text-muted: rgba(244, 241, 236, 0.72);
+    --color-primary: #79B89F;
+    --color-primary-contrast: #0F221B;
+    --color-accent: #D96969;
+    --color-border: rgba(244, 241, 236, 0.18);
+    --color-border-strong: rgba(244, 241, 236, 0.32);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45);
+    --shadow-md: 0 12px 24px rgba(0, 0, 0, 0.38);
+    --shadow-lg: 0 30px 45px rgba(0, 0, 0, 0.46);
+    --shadow-focus: 0 0 0 3px rgba(121, 184, 159, 0.45);
+  }
+}
+
+:root {
+  --step--2: clamp(0.78rem, 0.75rem + 0.15vw, 0.82rem);
+  --step--1: clamp(0.88rem, 0.84rem + 0.22vw, 0.94rem);
+  --step-0: clamp(1rem, 0.95rem + 0.28vw, 1.1rem);
+  --step-1: clamp(1.18rem, 1.08rem + 0.42vw, 1.32rem);
+  --step-2: clamp(1.4rem, 1.24rem + 0.58vw, 1.6rem);
+  --step-3: clamp(1.65rem, 1.4rem + 0.78vw, 1.94rem);
+  --step-4: clamp(1.96rem, 1.62rem + 1vw, 2.34rem);
+  --step-5: clamp(2.32rem, 1.84rem + 1.32vw, 2.86rem);
+  --step-6: clamp(2.8rem, 2.1rem + 1.7vw, 3.4rem);
+}
+
+:root {
+  --z-header: 400;
+  --z-overlay: 500;
+}
